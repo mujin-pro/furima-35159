@@ -3,7 +3,7 @@
 | Column                | Type      | Options                         |
 | --------------------- | --------- | ------------------------------- |
 | nickname              | string    | null: false                     |
-| email                 | string    | null: false                     |
+| email                 | string    | null: false, unique: true       |
 | encrypted_password    | string    | null: false                     |
 | family_name           | string    | null: false                     |
 | last_name             | string    | null: false                     |
@@ -58,6 +58,4 @@ has_one :delivery_address
 | liquidation           | reference | null: false, foreign_key: true  |
 
 ### Association
-belongs_to :user
-belongs_to :product
 belongs_to liquidation
