@@ -14,7 +14,6 @@
 ### Association
 has_many :products
 has_many :liquidations
-has_many :delivery_addresses
 
 ## products テーブル
 
@@ -33,14 +32,13 @@ has_many :delivery_addresses
 ### Association
 belongs_to :user
 has_one :liquidation
-has_one :delivery_address
 
 ## liquidations テーブル
 
-| Column                | Type      | Options                         |
-| --------------------- | --------- | ------------------------------- |
-| user                  | reference | null: false, foreign_key: true  |
-| product               | reference | null: false, foreign_key: true  |
+| Column                | Type       | Options                         |
+| --------------------- | ---------- | ------------------------------- |
+| user                  | references | null: false, foreign_key: true  |
+| product               | references | null: false, foreign_key: true  |
 
 ### Association
 belongs_to :user
@@ -57,6 +55,9 @@ has_one :delivery_address
 | block                 | string    | null: false                     |
 | building_name         | string    |                                 |
 | phone_number          | string    | null: false                     |
-| user                  | reference | null: false, foreign_key: true  |
-| product               | reference | null: false, foreign_key: true  |
 | liquidation           | reference | null: false, foreign_key: true  |
+
+### Association
+belongs_to :user
+belongs_to :product
+belongs_to liquidation
