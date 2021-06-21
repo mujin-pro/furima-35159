@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
-      it 'passwordは英数字混合でないと登録できない' do
+      it 'passwordは半角英数字混合でないと登録できない' do
         @user.password = '123456'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
@@ -129,14 +129,6 @@ RSpec.describe User, type: :model do
         @user.birth_day = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
-      end
-
-      it '同じメールアドレスが登録済みの場合は登録できない' do
-        #同じメールアドレスを2つ登録して、登録できないことを確認する
-      end
-
-      it 'メールアドレスに@を含まない場合は登録できない' do
-        #@を含まない場合は登録できないことを確認する
       end
     end
   end
