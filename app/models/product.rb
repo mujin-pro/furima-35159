@@ -13,7 +13,13 @@ class Product < ApplicationRecord
     validates :delivery_charge_id,     numericality: { other_than: 1 }
     validates :delivery_source_id,     numericality: { other_than: 1 }
     validates :days_up_to_delivery_id, numericality: { other_than: 1 }
-    validates :price,                  numericality: { in: 300..9999999 }
+    validates :price
+    validates :image
+  end
+
+  with_options allow_blank: true do
+    validates :price,                  numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 },
+                                       format: { with: /\A[0-9]+\z/ }
   end
 
 end
