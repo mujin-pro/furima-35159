@@ -18,8 +18,7 @@ class Product < ApplicationRecord
   end
 
   with_options allow_blank: true do
-    validates :price,                  numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 },
+    validates :price,                  numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
                                        format: { with: /\A[0-9]+\z/ }
   end
-
 end
