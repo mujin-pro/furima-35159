@@ -11,11 +11,11 @@ class Product < ApplicationRecord
     validates :price
     validates :image
     with_options numericality: { other_than: 1 } do
-      validates :product_category_id,    numericality: { other_than: 1 }
-      validates :product_status_id,      numericality: { other_than: 1 }
-      validates :delivery_charge_id,     numericality: { other_than: 1 }
-      validates :delivery_source_id,     numericality: { other_than: 1 }
-      validates :days_up_to_delivery_id, numericality: { other_than: 1 }
+      validates :product_category_id
+      validates :product_status_id
+      validates :delivery_charge_id
+      validates :delivery_source_id
+      validates :days_up_to_delivery_id
     end
   end
 

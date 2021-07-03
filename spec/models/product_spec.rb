@@ -11,7 +11,7 @@ RSpec.describe Product, type: :model do
       end
 
       it '価格が300~9999999の半角数字であれば登録できる' do
-        @product.price = '300'
+        @product.price = 300
         expect(@product).to be_valid
       end
     end
@@ -35,34 +35,34 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Product description can't be blank")
       end
 
-      it '商品カテゴリーが空では登録できない' do
-        @product.product_category_id = ''
+      it '商品カテゴリーが「---」では登録できない' do
+        @product.product_category_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Product category can't be blank")
+        expect(@product.errors.full_messages).to include("Product category must be other than 1")
       end
 
-      it '商品の状態が空では登録できない' do
-        @product.product_status_id = ''
+      it '商品の状態が「---」では登録できない' do
+        @product.product_status_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Product status can't be blank")
+        expect(@product.errors.full_messages).to include("Product status must be other than 1")
       end
 
-      it '配送料が空では登録できない' do
-        @product.delivery_charge_id = ''
+      it '配送料が「---」では登録できない' do
+        @product.delivery_charge_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Delivery charge can't be blank")
+        expect(@product.errors.full_messages).to include("Delivery charge must be other than 1")
       end
 
-      it '発送元が空では登録できない' do
-        @product.delivery_source_id = ''
+      it '発送元が「---」では登録できない' do
+        @product.delivery_source_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Delivery source can't be blank")
+        expect(@product.errors.full_messages).to include("Delivery source must be other than 1")
       end
 
-      it '日数が空では登録できない' do
-        @product.days_up_to_delivery_id = ''
+      it '日数が「---」では登録できない' do
+        @product.days_up_to_delivery_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include("Days up to delivery can't be blank")
+        expect(@product.errors.full_messages).to include("Days up to delivery must be other than 1")
       end
 
       it '価格が空では登録できない' do
@@ -85,6 +85,12 @@ RSpec.describe Product, type: :model do
 
       it '価格が半角数字以外では登録できない' do
         @product.price = 'test'
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Price is not a number')
+      end
+
+      it '価格が英数字混合では登録できない' do
+        @product.price = 'p300'
         @product.valid?
         expect(@product.errors.full_messages).to include('Price is not a number')
       end
