@@ -10,8 +10,8 @@ class Product < ApplicationRecord
   belongs_to :day
 
   with_options presence: true do
-    validates :name,                   length: { maximum: 40 }
-    validates :description,    length: { maximum: 1000 }
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
     validates :price
     validates :image
     with_options numericality: { other_than: 1 } do
