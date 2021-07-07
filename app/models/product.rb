@@ -3,19 +3,23 @@ class Product < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :status, :charge, :source, :day
+  belongs_to :category
+  belongs_to :status
+  belongs_to :charge
+  belongs_to :source
+  belongs_to :day
 
   with_options presence: true do
     validates :name,                   length: { maximum: 40 }
-    validates :product_description,    length: { maximum: 1000 }
+    validates :description,    length: { maximum: 1000 }
     validates :price
     validates :image
     with_options numericality: { other_than: 1 } do
-      validates :product_category_id
-      validates :product_status_id
-      validates :delivery_charge_id
-      validates :delivery_source_id
-      validates :days_up_to_delivery_id
+      validates :category_id
+      validates :status_id
+      validates :charge_id
+      validates :source_id
+      validates :day_id
     end
   end
 

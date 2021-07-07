@@ -30,39 +30,39 @@ RSpec.describe Product, type: :model do
       end
 
       it '商品説明が空では登録できない' do
-        @product.product_description = ''
+        @product.description = ''
         @product.valid?
-        expect(@product.errors.full_messages).to include("Product description can't be blank")
+        expect(@product.errors.full_messages).to include("Description can't be blank")
       end
 
       it '商品カテゴリーが「---」では登録できない' do
-        @product.product_category_id = 1
+        @product.category_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Product category must be other than 1')
+        expect(@product.errors.full_messages).to include('Category must be other than 1')
       end
 
       it '商品の状態が「---」では登録できない' do
-        @product.product_status_id = 1
+        @product.status_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Product status must be other than 1')
+        expect(@product.errors.full_messages).to include('Status must be other than 1')
       end
 
       it '配送料が「---」では登録できない' do
-        @product.delivery_charge_id = 1
+        @product.charge_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Delivery charge must be other than 1')
+        expect(@product.errors.full_messages).to include('Charge must be other than 1')
       end
 
       it '発送元が「---」では登録できない' do
-        @product.delivery_source_id = 1
+        @product.source_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Delivery source must be other than 1')
+        expect(@product.errors.full_messages).to include('Source must be other than 1')
       end
 
       it '日数が「---」では登録できない' do
-        @product.days_up_to_delivery_id = 1
+        @product.day_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Days up to delivery must be other than 1')
+        expect(@product.errors.full_messages).to include('Day must be other than 1')
       end
 
       it '価格が空では登録できない' do
