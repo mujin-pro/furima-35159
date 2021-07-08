@@ -122,15 +122,15 @@
       <% if @product.present? %>
         <% @product.each do |product| %>
           <li class='list'>
-            <%= link_to "#" do %>
+            <%= link_to product_path(product) do %>
             <div class='item-img-content'>
               <%= image_tag product.image, class: "item-img" %>
 
-              <%# 商品が売れていればsold outを表示しましょう %>
+              <%# 商品が売れていればsold outを表示する（未実装のため、完了までコメントとして残す） %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-              <%# //商品が売れていればsold outを表示しましょう %>
+              <%# //商品が売れていればsold outを表示する（未実装のため、完了までコメントとして残す） %>
 
             </div>
             <div class='item-info'>
@@ -138,7 +138,7 @@
                 <%= product.name %>
               </h3>
               <div class='item-price'>
-                <span><%= product.price %>円<br><%= Charge.data[product.delivery_charge_id - 1][:name] %></span>
+                <span><%= product.price %>円<br><%= product.charge.name %></span>
                 <div class='star-btn'>
                   <%= image_tag "star.png", class:"star-icon" %>
                   <span class='star-count'>0</span>
