@@ -20,12 +20,12 @@ has_many :liquidations
 | Column                 | Type       | Options                         |
 | ---------------------- | ---------- | ------------------------------- |
 | name                   | string     | null: false                     |
-| product_description    | text       | null: false                     |
-| product_category_id    | integer    | null: false                     |
-| product_status_id      | integer    | null: false                     |
-| delivery_charge_id     | integer    | null: false                     |
-| delivery_source_id     | integer    | null: false                     |
-| days_up_to_delivery_id | integer    | null: false                     |
+| description            | text       | null: false                     |
+| category_id            | integer    | null: false                     |
+| status_id              | integer    | null: false                     |
+| charge_id              | integer    | null: false                     |
+| source_id              | integer    | null: false                     |
+| day_id                 | integer    | null: false                     |
 | price                  | integer    | null: false                     |
 | user                   | references | null: false, foreign_key: true  |
 
