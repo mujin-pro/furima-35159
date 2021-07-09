@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_product, only: [:show, :edit, :update]
+  before_action :user_judge, only: [:edit, :update]
 
   def new
     @product = Product.new
@@ -19,7 +21,17 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @product.update(product_params) 
+      redirect_to product_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -31,5 +43,13 @@ class ProductsController < ApplicationController
       :charge_id, :source_id,
       :day_id, :price
     ).merge(user_id: current_user.id)
+  end
+
+  def find_product
+    @product = Product.find(params[:id])
+  end
+
+  def user_judge
+    redirect_to root_path if current_user != @product.user
   end
 end
