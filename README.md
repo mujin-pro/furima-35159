@@ -43,14 +43,14 @@ has_one :liquidation
 ### Association
 belongs_to :user
 belongs_to :product
-has_one :delivery_address
+has_one :address
 
-## delivery_addresses テーブル
+## addresses テーブル
 
 | Column                | Type       | Options                         |
 | --------------------- | ---------- | ------------------------------- |
 | postal_code           | string     | null: false                     |
-| delivery_source_id    | integer    | null: false                     |
+| source_id             | integer    | null: false                     |
 | city                  | string     | null: false                     |
 | block                 | string     | null: false                     |
 | building_name         | string     |                                 |
