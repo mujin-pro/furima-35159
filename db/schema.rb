@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_230813) do
+ActiveRecord::Schema.define(version: 2021_07_12_085405) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 2021_07_11_230813) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.integer "source_id", null: false
+    t.string "city", null: false
+    t.string "block", null: false
+    t.string "building_name", null: false
+    t.string "phone_number", null: false
+    t.bigint "liquidation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["liquidation_id"], name: "index_addresses_on_liquidation_id"
   end
 
   create_table "liquidations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -76,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_230813) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "liquidations"
   add_foreign_key "liquidations", "products"
   add_foreign_key "liquidations", "users"
   add_foreign_key "products", "users"
