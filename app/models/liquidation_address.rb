@@ -1,6 +1,6 @@
 class LiquidationAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :product_id, :postal_code, :source_id, :city, :block, :building_name, :phone_number
+  attr_accessor :user_id, :product_id, :postal_code, :source_id, :city, :block, :building_name, :phone_number, :token
 
   with_options presence: true do
     validates :user_id
@@ -10,6 +10,7 @@ class LiquidationAddress
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A\d{11}\z/, message: "is Invalid. Enter in 11 digits" }
+    validates :token
   end
 
   def save
