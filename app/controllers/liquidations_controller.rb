@@ -1,5 +1,7 @@
 class LiquidationsController < ApplicationController
   before_action :find_product, only: [:index, :create]
+  before_action :user_judge, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
 
   def index
     @liquidation_address = LiquidationAddress.new
@@ -33,6 +35,10 @@ class LiquidationsController < ApplicationController
       card: liquidation_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def user_judge
+    redirect_to root_path if current_user == @product.user
   end
   
 end

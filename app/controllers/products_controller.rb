@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   before_action :user_judge, only: [:edit, :update, :destroy]
+  before_action :product_judge, only: [:edit, :update, :destroy]
 
   def new
     @product = Product.new
@@ -55,5 +56,9 @@ class ProductsController < ApplicationController
 
   def user_judge
     redirect_to root_path if current_user != @product.user
+  end
+
+  def product_judge
+    redirect_to root_path if @product.liquidation.present?
   end
 end
