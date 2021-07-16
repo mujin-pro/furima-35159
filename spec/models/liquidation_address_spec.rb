@@ -29,19 +29,19 @@ RSpec.describe LiquidationAddress, type: :model do
       it '郵便番号に半角ハイフンが含まれていないと登録できない' do
         @liquidation_address.postal_code = '1234567'
         @liquidation_address.valid?
-        expect(@liquidation_address.errors.full_messages).to include("Postal code is Invalid. Include hyphen(-)")
+        expect(@liquidation_address.errors.full_messages).to include('Postal code is Invalid. Include hyphen(-)')
       end
 
       it '郵便番号が半角数字以外では登録できない' do
         @liquidation_address.postal_code = '１２３-４５６７'
         @liquidation_address.valid?
-        expect(@liquidation_address.errors.full_messages).to include("Postal code is Invalid. Include hyphen(-)")
+        expect(@liquidation_address.errors.full_messages).to include('Postal code is Invalid. Include hyphen(-)')
       end
 
       it '都道府県が「---」では登録できない' do
         @liquidation_address.source_id = '1'
         @liquidation_address.valid?
-        expect(@liquidation_address.errors.full_messages).to include("Source must be other than 1")
+        expect(@liquidation_address.errors.full_messages).to include('Source must be other than 1')
       end
 
       it '市区町村が空では登録できない' do
@@ -65,13 +65,13 @@ RSpec.describe LiquidationAddress, type: :model do
       it '電話番号が11桁でなければ登録できない' do
         @liquidation_address.phone_number = '0123456789'
         @liquidation_address.valid?
-        expect(@liquidation_address.errors.full_messages).to include("Phone number is Invalid. Enter in 11 digits")
+        expect(@liquidation_address.errors.full_messages).to include('Phone number is Invalid. Enter in 11 digits')
       end
 
       it '電話番号が半角数字以外では登録できない' do
         @liquidation_address.phone_number = 'abcdefghijk'
         @liquidation_address.valid?
-        expect(@liquidation_address.errors.full_messages).to include("Phone number is Invalid. Enter in 11 digits")
+        expect(@liquidation_address.errors.full_messages).to include('Phone number is Invalid. Enter in 11 digits')
       end
 
       it 'tokenが空では登録できない' do

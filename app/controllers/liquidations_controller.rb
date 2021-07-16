@@ -22,7 +22,9 @@ class LiquidationsController < ApplicationController
   private
 
   def liquidation_params
-    params.require(:liquidation_address).permit(:postal_code, :source_id, :city, :block, :building_name, :phone_number).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
+    params.require(:liquidation_address).permit(:postal_code, :source_id, :city, :block, :building_name, :phone_number).merge(
+      user_id: current_user.id, product_id: params[:product_id], token: params[:token]
+    )
   end
 
   def find_product
@@ -30,7 +32,7 @@ class LiquidationsController < ApplicationController
   end
 
   def pay_product
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @product.price,
       card: liquidation_params[:token],
@@ -45,6 +47,4 @@ class LiquidationsController < ApplicationController
   def product_judge
     redirect_to root_path if @product.liquidation.present?
   end
-
-  
 end
