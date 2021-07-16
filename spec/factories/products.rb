@@ -8,7 +8,7 @@ FactoryBot.define do
     source_id       { rand(2..48) }
     day_id          { rand(2..4) }
     price           { rand(300..9_999_999) }
-    user
+    association     :user
 
     after(:build) do |product|
       product.image.attach(io: File.open('public/test_image.png'), filename: 'test_image.png', content_type: 'image/png')
